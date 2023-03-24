@@ -1,4 +1,5 @@
 import ReactDOM from "react-dom";
+import {ColoredMessage} from "./components/ColoredMessage";
 
 export const App = () => {
 
@@ -6,15 +7,11 @@ export const App = () => {
         alert();
     };
 
-    const contentStyle = {
-        color: "blue",
-        fontsize: "20px"
-    };
-
     return (
         <>
             <h1 style={{color: "red"}}>안녕하세요!</h1>
-            <p style={contentStyle}>잘 지내시죠?</p>
+            <ColoredMessage color="blue">잘 지내시죠?</ColoredMessage>
+            <ColoredMessage color="pink">잘 지냅니다!</ColoredMessage>
             <button onClick={onClickButton}>버튼</button>
         </>
     )
