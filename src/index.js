@@ -1,7 +1,4 @@
 import ReactDOM from "react-dom";
+import {App} from "./App";
 
-const App = () => {
-    return <h1>안녕하세요!</h1>;
-};
-
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(<App/>, document.getElementById("root"));
