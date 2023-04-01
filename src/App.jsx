@@ -1,28 +1,18 @@
 import {useState, memo, useCallback} from "react";
-import {Child4} from "./components/Child4";
-import {Child1} from "./components/Child1";
+import {Card} from "./components/Card";
 
 export const App = memo(() => {
 
-    console.log('App 렌더링');
+    const [isAdmin, setIsAdmin] = useState(false);
 
-    const [num, setNum] = useState(0);
-
-    const onClickButton = () => {
-        setNum(num + 1);
-    };
-
-    const onClickReset = useCallback(() => {
-        setNum(0);
-    }, []);
+    const onClickSwitch = () => setIsAdmin(!isAdmin);
 
     return (
-        <>
-            <button onClick={onClickButton}>버튼</button>
-            <p>{num}</p>
-            <Child1 onClickReset={onClickReset}/>
-            <Child4/>
-        </>
+        <div>
+            {isAdmin ? <span>관리자입니다</span> : <span>관리자가 아닙니다</span>}
+            <button onClick={onClickSwitch}>전환</button>
+            <Card isAdmin={isAdmin} />
+        </div>
     );
 
 });
