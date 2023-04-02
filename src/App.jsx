@@ -1,9 +1,10 @@
-import {useState, memo, useCallback} from "react";
+import {useContext} from "react";
 import {Card} from "./components/Card";
+import {AdminFlagContext} from "./components/providers/AdminFlagProvider";
 
-export const App = memo(() => {
+export const App = () => {
 
-    const [isAdmin, setIsAdmin] = useState(false);
+    const [isAdmin, setIsAdmin] = useContext(AdminFlagContext);
 
     const onClickSwitch = () => setIsAdmin(!isAdmin);
 
@@ -11,8 +12,8 @@ export const App = memo(() => {
         <div>
             {isAdmin ? <span>관리자입니다</span> : <span>관리자가 아닙니다</span>}
             <button onClick={onClickSwitch}>전환</button>
-            <Card isAdmin={isAdmin} />
+            <Card isAdmin={isAdmin}/>
         </div>
     );
 
-});
+};
