@@ -1,19 +1,24 @@
-import {useContext} from "react";
-import {Card} from "./components/Card";
-import {AdminFlagContext} from "./components/providers/AdminFlagProvider";
+import {useFetchUsers} from "./hooks/useFetchUsers";
+import {useState} from "react";
 
 export const App = () => {
 
-    const [isAdmin, setIsAdmin] = useContext(AdminFlagContext);
-
-    const onClickSwitch = () => setIsAdmin(!isAdmin);
+    const {userList, onClickFetchUser} = useFetchUsers();
+    console.log(userList);
+    const [isLoading, setIsLoading] = useState(false);
+    const [isError, setIsError] = useState(false);
 
     return (
         <div>
-            {isAdmin ? <span>관리자입니다</span> : <span>관리자가 아닙니다</span>}
-            <button onClick={onClickSwitch}>전환</button>
-            <Card isAdmin={isAdmin}/>
+            <button onClick={onClickFetchUser}>사용자 정보 얻기</button>
+            {isError && <p style={{color: "red"}}>에러가 발생했습니다</p>}
+            {isLoading ? (
+                <p>데이터를 가져오고 있습니다</p>
+            ) : (
+                userList.map(user => (
+                    <p>{`${user.id}: ${user.name}(${user.age} 세)`}</p>
+                ))
+            )}
         </div>
     );
-
 };
